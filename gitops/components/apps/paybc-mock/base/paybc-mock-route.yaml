@@ -1,0 +1,25 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  name: paybc-mock
+  labels:
+    app: paybc-mock
+    app.kubernetes.io/instance: paybc-mock
+    app.kubernetes.io/name: paybc-mock
+spec:
+  host: paybc-mock-0198bb-dev.apps.silver.devops.gov.bc.ca
+  to:
+    kind: Service
+    name: paybc-mock
+    weight: 100
+  port:
+    targetPort: web
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: paybc-mock-0198bb-dev.apps.silver.devops.gov.bc.ca
+      routerName: default
+      wildcardPolicy: None
+      routerCanonicalHostname: apps.silver.devops.gov.bc.ca

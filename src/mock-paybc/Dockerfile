@@ -13,4 +13,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-CMD ["npm", "start"]
+# CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD ["sh", "-c", "nginx -g 'daemon off;'"]
