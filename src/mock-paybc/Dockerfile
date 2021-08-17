@@ -13,6 +13,7 @@ RUN npm install
 COPY . .
 RUN npm run build
 
+FROM registry.access.redhat.com/ubi8/nginx-118
 # CMD ["npm", "start"]
 EXPOSE 3000
 
