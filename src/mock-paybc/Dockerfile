@@ -12,9 +12,13 @@ RUN npm install
 
 COPY . .
 RUN npm run build
+EXPOSE 3000
+
+CMD ["npm","start"]
 
 FROM registry.access.redhat.com/ubi8/nginx-118
-# CMD ["npm", "start"]
-EXPOSE 3000
+COPY --from=build-deps /usr/src/app/build/ /usr/share/nginx/html
+COPY --from=build-deps /usr/src/app/nginx.conf /opt/app-root/etc/nginx.default.d/default.conf
+
 
 CMD ["sh", "-c", "nginx -g 'daemon off;'"]
