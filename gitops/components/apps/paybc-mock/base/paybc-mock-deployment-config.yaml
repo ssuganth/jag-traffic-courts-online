@@ -8,7 +8,7 @@ metadata:
     app: paybc-mock
     app.kubernetes.io/instance: paybc-mock
     app.kubernetes.io/name: paybc-mock
-    app.openshift.io/runtime: js
+    app.openshift.io/runtime: nodejs
 spec:
   strategy:
     type: Rolling
