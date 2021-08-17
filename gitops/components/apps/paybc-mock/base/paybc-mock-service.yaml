@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    description: Exposes and load balances the application pods
+  name: paybc-mock
+  labels:
+    app: paybc-mock
+    app.kubernetes.io/name: paybc-mock
+    app.kubernetes.io/instance: paybc-mock
+spec:
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+  selector:
+    name: paybc-mock
+  sessionAffinity: None
+  type: ClusterIP

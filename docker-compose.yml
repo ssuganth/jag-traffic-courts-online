@@ -168,6 +168,19 @@ services:
     networks:
       - traffic-court-net
 
+  # #############################################################################################
+  # ###                                Paybc mock up                                  ###
+  # #############################################################################################
+  paybc-mock:
+    container_name: paybc-mock
+    build:
+      context: ./src/mock-paybc
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - traffic-court-net
+
 networks:
   traffic-court-net:
     driver: "bridge"

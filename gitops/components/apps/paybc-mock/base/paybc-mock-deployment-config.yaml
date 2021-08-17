@@ -1,0 +1,62 @@
+kind: DeploymentConfig
+apiVersion: apps.openshift.io/v1
+metadata:
+  name: paybc-mock
+  annotations:
+    app.openshift.io/connects-to: citizen-web
+  labels:
+    app: paybc-mock
+    app.kubernetes.io/instance: paybc-mock
+    app.kubernetes.io/name: paybc-mock
+    app.openshift.io/runtime: js
+spec:
+  strategy:
+    type: Rolling
+    maxSurge: 50%
+    maxUnavailable: 0
+  triggers:
+    - type: ConfigChange
+    - type: ImageChange
+      imageChangeParams:
+        automatic: true
+        containerNames:
+          - paybc-mock
+        from:
+          kind: ImageStreamTag
+          namespace: 0198bb-tools
+          name: "mock-paybc:dev"
+  replicas: 1
+  revisionHistoryLimit: 10
+  test: false
+  selector:
+    name: paybc-mock
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        dev-app: paybc-mock
+        name: paybc-mock
+    spec:
+      containers:
+        - name: paybc-mock
+          image: >-
+            image-registry.openshift-image-registry.svc:5000/0198bb-tools/mock-paybc
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 150m
+              memory: 256Mi
+            requests:
+              cpu: 100m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+status: {}
