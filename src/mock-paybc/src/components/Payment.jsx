@@ -26,7 +26,7 @@ function Payment(){
   const submitHandler = function(e){
     e.preventDefault();
     let status = "paid";
-    let path = `${redirectUrl}&status=paid&amount=${amount}&transactionId=${create_UUID()}`;
+    let path = `${redirectUrl}&status=paid&amount=${amount}&confNo=123456&transId=${create_UUID()}`;
     window.location.href = path;
   
   }
@@ -37,7 +37,7 @@ function Payment(){
 
   const cancelHandler = (e) => {
     e.preventDefault();
-    let path = `${redirectUrl}&status=cancelled&amount=0&transactionId=${create_UUID()}`;
+    let path = `${redirectUrl}&status=cancelled`;
     window.location.href = path;
   }
   
