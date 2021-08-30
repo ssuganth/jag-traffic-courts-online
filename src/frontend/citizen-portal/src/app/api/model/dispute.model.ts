@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { OffenceDisputeDetail2 } from './offenceDisputeDetail2';
+import { OffenceDisputeDetail2 } from './offenceDisputeDetail2.model';
 
 
 export interface Dispute { 

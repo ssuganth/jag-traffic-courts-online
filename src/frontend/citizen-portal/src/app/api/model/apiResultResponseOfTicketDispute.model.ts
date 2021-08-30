@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { TicketDispute } from './ticketDispute';
+import { TicketDispute } from './ticketDispute.model';
 
 
 export interface ApiResultResponseOfTicketDispute { 

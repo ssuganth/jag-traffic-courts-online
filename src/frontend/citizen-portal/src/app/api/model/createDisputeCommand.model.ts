@@ -9,16 +9,20 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Additional } from './additional';
-import { OffenceDisputeDetail } from './offenceDisputeDetail';
+import { Additional } from './additional.model';
+import { TicketDispute } from './ticketDispute.model';
+import { Disputant } from './disputant.model';
+import { Offence } from './offence.model';
 
 
-export interface OffenceDispute { 
+export interface CreateDisputeCommand { 
     violationTicketNumber?: string;
-    offenceNumber: number;
     violationTime?: string;
     violationDate?: string;
+    disputant?: Disputant;
     additional?: Additional;
-    offenceDisputeDetail?: OffenceDisputeDetail;
+    offences?: Array<Offence>;
+    discountDueDate?: string;
+    discountAmount: number;
 }
 

@@ -9,7 +9,7 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { ShellTicket } from './shellTicket';
+import { ShellTicket } from './shellTicket.model';
 
 
 export interface CreateShellTicketCommand { 

@@ -9,9 +9,9 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Additional } from './additional';
-import { OffenceDisputeDetail } from './offenceDisputeDetail';
-import { OffenceDispute } from './offenceDispute';
+import { Additional } from './additional.model';
+import { OffenceDisputeDetail } from './offenceDisputeDetail.model';
+import { OffenceDispute } from './offenceDispute.model';
 
 
 export interface CreateOffenceDisputeCommand { 

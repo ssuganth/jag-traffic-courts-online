@@ -9,18 +9,10 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
+import { LookupsAll } from './lookupsAll.model';
 
 
-/**
- * 
- */
-export type DisputeStatus = 0 | 1 | 2 | 3 | 4;
-
-export const DisputeStatus = {
-    NUMBER_0: 0 as DisputeStatus,
-    NUMBER_1: 1 as DisputeStatus,
-    NUMBER_2: 2 as DisputeStatus,
-    NUMBER_3: 3 as DisputeStatus,
-    NUMBER_4: 4 as DisputeStatus
-};
+export interface ApiResultResponseOfLookupsAll { 
+    result?: LookupsAll;
+}
 

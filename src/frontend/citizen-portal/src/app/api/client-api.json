@@ -564,7 +564,7 @@
       }
     },
     "DisputeStatus": {
-      "type": "integer",
+      "type": "string",
       "description": "",
       "x-enumNames": [
         "New",
@@ -574,11 +574,11 @@
         "Rejected"
       ],
       "enum": [
-        0,
-        1,
-        2,
-        3,
-        4
+        "New",
+        "Submitted",
+        "InProgress",
+        "Complete",
+        "Rejected"
       ]
     },
     "ProblemDetails": {

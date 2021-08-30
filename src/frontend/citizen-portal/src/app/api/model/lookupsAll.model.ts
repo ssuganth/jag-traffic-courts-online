@@ -9,13 +9,13 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-import { Status } from './status';
-import { Language } from './language';
-import { Statute } from './statute';
-import { CourtLocation } from './courtLocation';
-import { Country } from './country';
-import { PoliceLocation } from './policeLocation';
-import { Province } from './province';
+import { Status } from './status.model';
+import { Language } from './language.model';
+import { Statute } from './statute.model';
+import { CourtLocation } from './courtLocation.model';
+import { Country } from './country.model';
+import { PoliceLocation } from './policeLocation.model';
+import { Province } from './province.model';
 
 
 export interface LookupsAll { 
