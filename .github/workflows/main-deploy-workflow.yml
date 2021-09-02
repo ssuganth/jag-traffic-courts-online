@@ -1,4 +1,4 @@
-name: Main-Build .NET API Image and Push to Openshift Registry
+name: Deployment Trigger Workflow
 on:
         
     workflow_dispatch:
@@ -44,7 +44,7 @@ jobs:
           RuntimeEnv: ${{ github.event.inputs.environment }}
         run: |
           docker build \
-            --build-arg ASPNETCORE_ENVIRONMENT=${RuntimeEnv} \
+            --build-arg ASPNETCORE_ENVIRONMENT=${{ github.event.inputs.environment }} \
             --tag ${IMAGE} \
             --tag ${VERIMAGE} \
             ${CONTEXT}
