@@ -2,7 +2,8 @@
 using Gov.CitizenApi.Features.Disputes.Commands;
 using Gov.CitizenApi.Features.Disputes.Queries;
 using Gov.CitizenApi.Models;
-using TrafficCourts.Common.Contract;
+//using TrafficCourts.Common.Contract;
+using TrafficCourts.Common.Util;
 
 namespace Gov.CitizenApi.Features.Disputes.Mapping
 {
@@ -28,8 +29,13 @@ namespace Gov.CitizenApi.Features.Disputes.Mapping
                 .ForMember(dest => dest.LawyerPresent, opt => opt.MapFrom(src => src.Additional == null ? false : src.Additional.LawyerPresent))
                 .ForMember(dest => dest.NumberOfWitnesses, opt => opt.MapFrom(src => src.Additional == null ? null : src.Additional.NumberOfWitnesses))
                 .ForMember(dest => dest.ViolationTicketNumber, opt => opt.MapFrom(src => src.ViolationTicketNumber))
+                .ForMember(dest => dest.ConfirmationNumber, opt => opt.MapFrom(src => RandomGenerator.RandomConfirmationNumber()))
                 .ForMember(dest => dest.WitnessPresent, opt => opt.MapFrom(src => src.Additional == null ? false : src.Additional.WitnessPresent))
                 .ForMember(dest => dest.OffenceDisputeDetails, opt => opt.MapFrom<OffenceDisputeDetailsResolver>())
+                .ForMember(dest => dest.ReductionReason, opt => opt.MapFrom(src => src.Additional == null ? null : src.Additional.ReductionReason))
+                .ForMember(dest => dest.RequestMoreTime, opt => opt.MapFrom(src => src.Additional == null ? false : src.Additional.RequestMoreTime))
+                .ForMember(dest => dest.RequestReduction, opt => opt.MapFrom(src => src.Additional == null ? false : src.Additional.RequestReduction))
+                .ForMember(dest => dest.MoreTimeReason, opt => opt.MapFrom(src => src.Additional == null ? null : src.Additional.MoreTimeReason))
                 ;
 
             CreateMap<Offence, DBModel.OffenceDisputeDetail>()
@@ -58,18 +64,19 @@ namespace Gov.CitizenApi.Features.Disputes.Mapping
                  ;
 
             CreateMap<DBModel.Dispute, Additional>()
-                .ForMember(dest => dest.InterpreterLanguage, opt => opt.MapFrom(src => src.InterpreterLanguage))
-                .ForMember(dest => dest.InterpreterRequired, opt => opt.MapFrom(src => src.InterpreterRequired))
-                .ForMember(dest => dest.LawyerPresent, opt => opt.MapFrom(src => src.LawyerPresent))
-                .ForMember(dest => dest.WitnessPresent, opt => opt.MapFrom(src => src.WitnessPresent))
                  ;
 
-            CreateMap<DBModel.Dispute, DisputeContract>()
+            CreateMap<DBModel.Dispute, TrafficCourts.Common.Contract.DisputeContract>()
                 ;
 
-            CreateMap<DBModel.OffenceDisputeDetail, OffenceDisputeDetailContract>()
+            CreateMap<DBModel.OffenceDisputeDetail, TrafficCourts.Common.Contract.OffenceDisputeDetailContract>()
                 ;
             CreateMap<DBModel.Dispute, GetDisputeResponse>();
+
+            CreateMap<CreateDisputeCommand, TrafficCourts.Common.Contract.TicketDisputeContract>();
+            CreateMap<Disputant, TrafficCourts.Common.Contract.Disputant>();
+            CreateMap<Additional, TrafficCourts.Common.Contract.Additional>();
+            CreateMap<Offence, TrafficCourts.Common.Contract.Offence>();
 
         }
     }

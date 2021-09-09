@@ -1,14 +1,10 @@
 using System;
-using System.IO;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Gov.CitizenApi.Features.Tickets.Commands;
 using Gov.CitizenApi.Features.Tickets.Queries;
 using Gov.CitizenApi.Models;
 using Gov.TicketSearch;
 using MediatR;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -69,7 +65,7 @@ namespace Gov.CitizenApi.Features.Tickets
                 var response = await _mediator.Send(createShellTicket);
                 if(response.Id == 0)
                 {
-                    ModelState.AddModelError("TicketNumber", "the ticket shell already exists .");
+                    ModelState.AddModelError("TicketNumber", "This ticket already exists.");
                     return BadRequest(ApiResponse.BadRequest(ModelState));
                 }
                 return RedirectToAction("Ticket", new { ticketNumber = createShellTicket.ViolationTicketNumber, time = createShellTicket.ViolationTime });
